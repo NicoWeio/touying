@@ -258,6 +258,10 @@
     if last-heading-label == "touying:handout" and not self.handout {
       return (none, recaller-map, (), (), true, false)
     }
+    // Skip hidden and skipped slides entirely
+    if last-heading-label in ("touying:hidden", "touying:skip") {
+      return (none, recaller-map, (), (), true, false)
+    }
     let (slide-content, callable) = if already-slide-wrapper {
       (slide-fn(self), slide-fn)
     } else {
